@@ -157,7 +157,7 @@ const Layout = ({ children }) => {
     <Flex 
       as="main" 
       className="layout"
-      w="fit-content"
+      w={["fit-content", "100%"]}
       h={["auto", "", "", "100vh"]}
       color="white"
       bgColor="black.900"
