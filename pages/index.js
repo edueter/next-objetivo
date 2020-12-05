@@ -52,7 +52,7 @@ export default function Home() {
           {IndexItems.map((curso) => ( //** Aqui eu mapeio os items daquele componente lá em cima, IndexItems, e gero os valores no render. Dessa forma, temos mais controle sobre o que é colocado no conteúdo.  */
             <Link href={curso.href}>
               <a>
-                <Box textAlign="center" mx={2} p={1} _hover={{ bgColor: "black.200", color: "orange.700" }}>
+                <Box textAlign="center" mx={2} mb={[".5rem", "0" ]} p={1} _hover={{ bgColor: "black.200", color: "orange.700" }}>
                   <AspectRatio ratio={1}>
                     <Image src={curso.imagem} layout="fill" alt={curso.titulo} />
                   </AspectRatio>

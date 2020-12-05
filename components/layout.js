@@ -5,6 +5,32 @@ import { AspectRatio, Text, Box, Flex, Grid, IconButton, HStack, Spacer } from '
 
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 
+const SocialIconNames = [ <FaYoutube/>, <FaInstagram/>, <FaTwitter/> ]
+
+const ItemsMenu = [
+  { 
+    nome: "Home",
+    href: "/"
+  },
+  { 
+    nome: "Materiais",
+    href: "/"
+  },
+  { 
+    nome: "Editais",
+    href: "/"
+  },
+  { 
+    nome: "Sobre",
+    href: "/"
+  },
+  { 
+    nome: "Contato",
+    href: "/"
+  },
+]
+
+
 const Header = ({ h, minH }) => {
 
   const SocialButtons = ({ children }) => {
@@ -22,18 +48,7 @@ const Header = ({ h, minH }) => {
         <Text>Qual o seu objetivo?</Text>
         <Spacer />
         <HStack>
-          <SocialButtons>
-            <FaYoutube />
-          </SocialButtons>
-
-          <SocialButtons>
-            <FaInstagram />
-          </SocialButtons>
-
-          <SocialButtons>
-            <FaTwitter />
-          </SocialButtons>
-
+          {SocialIconNames.map((item) => ( <SocialButtons>{item}</SocialButtons>))}
         </HStack>
       </Flex>
     )
@@ -60,15 +75,12 @@ const Header = ({ h, minH }) => {
         alignItems="center" 
         h="100%" 
         minH={10} 
+        alignSelf="flex-end"
         flexDirection="row" 
         justifyContent="space-around" 
         w="100%" 
         h="2rem">
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/">Materiais</NavLink>
-        <NavLink href="/">Editais</NavLink>
-        <NavLink href="/">Sobre</NavLink>
-        <NavLink href="/">Contato</NavLink>
+        {ItemsMenu.map((link) => (<NavLink href={link.href}>{link.nome}</NavLink>))}
       </Flex>
     )
   }
@@ -96,7 +108,7 @@ const Header = ({ h, minH }) => {
       minH={minH}
       h={h}
       className="header"
-      templateAreas=" 'topbar topbar topbar'  '. brand .'  '. menu .'"
+      templateAreas={["'topbar' 'brand' 'menu'", "'topbar topbar topbar'  '. brand .'  '. menu .'"]}
       >
       <TopBar gridArea="topbar" />
       <Brand gridArea="brand" />
@@ -133,7 +145,7 @@ const LayoutContainer = ({ children, maxW }) => {
       as="div" 
       width="100%" 
       maxW={maxW || ["auto", "740px", "920px", "1100px"]} 
-      px={["8rem", "0rem"]}
+      px={[".75rem", "0rem"]}
       mx="auto">
       {children}
     </Box>
@@ -145,8 +157,8 @@ const Layout = ({ children }) => {
     <Flex 
       as="main" 
       className="layout"
-      w="100%"
-      h="100vh"
+      w="fit-content"
+      h={["auto", "", "", "100vh"]}
       color="white"
       bgColor="black.900"
       flexDir="column"
